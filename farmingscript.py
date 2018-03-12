@@ -4,11 +4,9 @@ url = "http://api.rsbuddy.com/grandExchange?a=guidePrice&i="
 max_profit = 0
 most = "none"
 
+multiplier = 0
+
 exchange_ids = {"Astral Rune": "9075", "Nature Rune": "561", "Supercompost": "6034", "Ultracompost": "21483" }
-
-
-
-prices = {}
 
 def get_item_cost(item_id):
     full_url = url + itemid
@@ -56,6 +54,13 @@ class Herb:
         print("\tSell: ", self.price)
         print("\tProfit: ", self.profit)
 
+prices = {}
+
+astral_price = get_item_cost(exchange_ids['Astral Rune'])
+nature_price = get_item_cost(exchange_ids['Nature Rune'])
+prices['Fertile Soil'] = (nature_price * 2) + (astral_price * 3)
+prices['Supercompost'] = get_item_cost(exchange_ids['Supercompost'])
+prices['Ultracompost'] = get_item_cost(exchange_ids['Ultracompost'])
 
 #check herb with (name, herb id, seed id)
 check_herb("ranarr", 257, 5295)
