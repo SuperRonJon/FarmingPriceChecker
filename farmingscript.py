@@ -46,16 +46,8 @@ class Herb:
         self.seedNum = sn
 
     def calc_profit(self):
-        full_url = url + str(self.num)
-        response = requests.get(full_url)
-        data = response.json()
-        self.price = data["overall"]
-
-        full_url = url + str(self.seedNum)
-        response = requests.get(full_url)
-        data = response.json()
-        self.seedPrice = data["overall"]
-
+        self.price = get_item_cost(str(self.num))
+        self.seedPrice = get_item_cost(str(self.seedNum))
         self.profit = (self.price*6.5) - self.seedPrice
 
     def print(self):
