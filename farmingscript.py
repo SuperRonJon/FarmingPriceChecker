@@ -4,6 +4,17 @@ url = "http://api.rsbuddy.com/grandExchange?a=guidePrice&i="
 max_profit = 0
 most = "none"
 
+exchange_ids = {"Astral Rune": "9075", "Nature Rune": "561", "Supercompost": "6034", "Ultracompost": "21483" }
+
+
+
+prices = {}
+
+def get_item_cost(item_id):
+    full_url = url + itemid
+    response = requests.get(full_url)
+    data = response.json()
+    return data['overall']
 
 def check_max(to_check, current_max):
     if to_check.profit > current_max:
