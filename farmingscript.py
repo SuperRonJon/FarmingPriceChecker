@@ -9,7 +9,7 @@ multiplier = 0
 exchange_ids = {"Astral Rune": "9075", "Nature Rune": "561", "Supercompost": "6034", "Ultracompost": "21483" }
 
 def get_item_cost(item_id):
-    full_url = url + itemid
+    full_url = url + item_id
     response = requests.get(full_url)
     data = response.json()
     return data['overall']
@@ -46,7 +46,7 @@ class Herb:
     def calc_profit(self):
         self.price = get_item_cost(str(self.num))
         self.seedPrice = get_item_cost(str(self.seedNum))
-        self.profit = (self.price*6.5) - self.seedPrice
+        self.profit = (self.price*multiplier) - self.seedPrice - prices[compost_name]
 
     def print(self):
         print(self.name.upper())
@@ -62,7 +62,25 @@ prices['Fertile Soil'] = (nature_price * 2) + (astral_price * 3)
 prices['Supercompost'] = get_item_cost(exchange_ids['Supercompost'])
 prices['Ultracompost'] = get_item_cost(exchange_ids['Ultracompost'])
 
+compost = input('Enter U for Ultra compost, S for Supercompost, or F for Fertile Soil Spell\n')
+compost = compost.lower()
+while compost != 'u' and compost != 's' and compost != 'f':
+    compost = input('Must pick either u, s, or f\n')
+
+compost_name = ''
+
+if compost == 'u':
+    multiplier = 7.5
+    compost_name = 'Ultracompost'
+elif compost == 's':
+    multiplier = 6.5
+    compost_name = 'Supercompost'
+elif compost == 'f':
+    multiplier = 6.5
+    compost_name = 'Fertile Soil'
+
 #check herb with (name, herb id, seed id)
+print(compost_name.upper())
 check_herb("ranarr", 257, 5295)
 check_herb("torstol", 269, 5304)
 check_herb("snapdragon", 3000, 5300)
