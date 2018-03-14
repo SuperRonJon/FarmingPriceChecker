@@ -6,6 +6,8 @@ most = "none"
 
 multiplier = 0
 
+multipliers = { "Ultracompost": 8, "Supercompost": 7 }
+
 exchange_ids = {"Astral Rune": "9075", "Nature Rune": "561", "Supercompost": "6034", "Ultracompost": "21483" }
 
 def get_item_cost(item_id):
@@ -70,13 +72,13 @@ while compost != 'u' and compost != 's' and compost != 'f':
 compost_name = ''
 
 if compost == 'u':
-    multiplier = 7.5
+    multiplier = multipliers['Ultracompost']
     compost_name = 'Ultracompost'
 elif compost == 's':
-    multiplier = 6.5
+    multiplier = multipliers['Supercompost']
     compost_name = 'Supercompost'
 elif compost == 'f':
-    multiplier = 6.5
+    multiplier = multipliers['Supercompost']
     compost_name = 'Fertile Soil'
 
 #check herb with (name, herb id, seed id)
